@@ -5,10 +5,11 @@ public class RightAngledTriangle extends Shape {
     private double height;
     private double hypotenuse;
 
-    public RightAngledTriangle(String name, double base, double height, double hypotenuse) {
+    public RightAngledTriangle(String name, double base, double height) {
         super(name);
         this.base = base;
         this.height = height;
+        this.hypotenuse = Math.sqrt(Math.pow(base, 2) + Math.pow(height, 2)); // Pythagorean theorem
     }
 
     public double getBase() {

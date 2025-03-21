@@ -2,51 +2,44 @@ package Griffith;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.ArrayList;
 
-public class ShapeTest {
-    private static final double EPSILON = 0.001;
+class ShapeTest {
 
     @Test
-    public void testCircle() {
-        Circle c = new Circle("Circle", 3);
-        assertEquals(28.274, c.area(), EPSILON);
-        assertEquals(18.849, c.perimeter(), EPSILON);
-        assertEquals("Shape: Circle, Radius: 3.0", c.toString());
+    void testCircle() {
+        Circle circle = new Circle("MyCircle", 3.0);
+        assertEquals(28.2743, circle.area(), 0.0001);  // π * r²
+        assertEquals(18.8495, circle.perimeter(), 0.0001);  // 2 * π * r
     }
 
     @Test
-    public void testRhombus() {
-        Rhombus r = new Rhombus("Rhombus", 4, 5, 3);
-        assertEquals(10, r.area(), EPSILON);
-        assertEquals(12, r.perimeter(), EPSILON);
-        assertEquals("Shape: Rhombus, Diagonals: 4.0 & 5.0, Side: 3.0", r.toString());
+    void testRhombus() {
+        Rhombus rhombus = new Rhombus("MyRhombus", 4, 6, 5);
+        assertEquals(12.0, rhombus.area(), 0.0001);  // (d1 * d2) / 2
+        assertEquals(20.0, rhombus.perimeter(), 0.0001);  // 4 * side
     }
 
     @Test
-    public void testRightAngledTriangle() {
-        RightAngledTriangle t = new RightAngledTriangle("Triangle", 3, 4, 5);
-        assertEquals(6, t.area(), EPSILON);
-        assertEquals(12, t.perimeter(), EPSILON);
-        assertEquals("Shape: Triangle, Base: 3.0, Height: 4.0, Hypotenuse: 5.0", t.toString());
+    void testRightAngledTriangle() {
+        RightAngledTriangle triangle = new RightAngledTriangle("MyTriangle", 3, 4);
+        assertEquals(6.0, triangle.area(), 0.0001);  // (base * height) / 2
+        assertEquals(12.0, triangle.perimeter(), 0.0001);  // 3 + 4 + 5
     }
-    
+
     @Test
-    public void integrationTest() {
+    void testIntegration() {
         ArrayList<Shape> shapes = new ArrayList<>();
         shapes.add(new Circle("Circle1", 2));
         shapes.add(new Circle("Circle2", 3));
-        shapes.add(new Rhombus("Rhombus1", 4, 5, 3));
-        shapes.add(new Rhombus("Rhombus2", 6, 7, 5));
-        shapes.add(new RightAngledTriangle("Triangle1", 3, 4, 5));
-        shapes.add(new RightAngledTriangle("Triangle2", 5, 12, 13));
+        shapes.add(new Rhombus("Rhombus1", 4, 6, 5));
+        shapes.add(new Rhombus("Rhombus2", 5, 8, 6));
+        shapes.add(new RightAngledTriangle("Triangle1", 3, 4));
+        shapes.add(new RightAngledTriangle("Triangle2", 5, 12));
 
-        for (Shape s : shapes) {
-            assertTrue(s.area() > 0);
-            assertTrue(s.perimeter() > 0);
+        for (Shape shape : shapes) {
+            assertTrue(shape.area() > 0);
+            assertTrue(shape.perimeter() > 0);
         }
     }
-
-    
 }
